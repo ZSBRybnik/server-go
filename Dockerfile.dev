@@ -1,0 +1,6 @@
+FROM golang:latest
+ADD . /server
+WORKDIR /server
+RUN go mod download
+EXPOSE 5001
+CMD ["go", "run", "server.go"]
