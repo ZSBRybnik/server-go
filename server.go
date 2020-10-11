@@ -19,7 +19,7 @@ func main() {
 	databaseName := os.Getenv("DATABASE_NAME")
 	databasePassword := os.Getenv("DATABASE_PASSWORD")
 	mainAppURL := os.Getenv("MAIN_APP_URL")
-	database, err := sql.Open("mysql", databaseUser+":"+databasePassword+"@/"+databaseName)
+	database, err := sql.Open("mysql", databaseUser+":"+databasePassword+"@tcp(host.docker.internal:3306)/"+databaseName)
 	utils.ErrorHandler(err, true)
 	defer database.Close()
 	redisDB := redis.NewClient(&redis.Options{
