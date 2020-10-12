@@ -62,7 +62,7 @@ func GetPostHandler(context *gin.Context) {
 				}
 				getPostInBytes, err := json.Marshal(getPost)
 				utils.ErrorHandler(err, false)
-				err = redisDB.Set(utils.AppContext, "post-"+id+"-"+language, getPostInBytes, 10*time.Minute)
+				err = redisDB.Set(utils.AppContext, "post-"+id+"-"+language, getPostInBytes, 10*time.Minute).Err()
 				utils.ErrorHandler(err, false)
 			} else {
 				log.Fatalln("Can't find database in gin-gonic context")
