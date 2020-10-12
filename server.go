@@ -23,7 +23,7 @@ func main() {
 	utils.ErrorHandler(err, true)
 	defer database.Close()
 	redisDB := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "host.docker.internal:6379",
 		Password: "",
 		DB:       0,
 	})
