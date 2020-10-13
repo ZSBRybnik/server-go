@@ -1,6 +1,9 @@
-FROM golang:latest
+FROM golang:1.14
 ADD . /server
 WORKDIR /server
+RUN apt-get update
+RUN apt-get -y install npm
+RUN npm i -g nodemon
 RUN go mod download
 EXPOSE 5001
-CMD ["go", "run", "server.go"]
+CMD ["nodemon", "--exec", "go run server.go", "--signal", "SIGTERM"]
